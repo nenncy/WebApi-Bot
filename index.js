@@ -7,7 +7,7 @@ const servers = http.createServer(app);
 // const io = new Server(servers);
 
 const port = 5000;
-
+require('dotenv').config()
 app.use(express.json());
 app.use(express.static(__dirname + '/views')); // html
 app.use(express.static(__dirname + '/public')); // js, css, images
@@ -32,8 +32,8 @@ app.post('/chat', async (req,res)=>{
 
   // const {userInput}= req.body;
    try {
-    const apiUrl = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=AIzaSyCWTkvV3jM7VDKBsNJqfrdjjJyDBF59jbw';
-    //  const apiKey = 'AIzaSyCWTkvV3jM7VDKBsNJqfrdjjJyDBF59jbw';  // Replace with your actual API key
+    const apiKey = process.env.APIKEY;  // Replace with your actual API key
+    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`;
 
            const postData = {
                "contents": [
