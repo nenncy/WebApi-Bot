@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
   <!-- <script src="../public//css/index.css"></script> -->
   <head>
@@ -7,18 +8,25 @@
     <meta name="description" content="Simple AI Chat Bot Demo with Web Speech API">
     <meta name="author" content="Tomomi Imura  @girlie_mac">
 
-    <title>Simple AI Demo with Web Speech API</title>
+    <title>Simple AI Chatbot with Gemini API</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/style.css">
   </head>
 
   <body>
-    <div class="container">
-    <h1>Simple AI Demo with Web Speech API</h1>
-    <button class="button-33" role="button">Talk</button>
+    <div class="chat-container">
+    <h1>Simple AI Chatbot with GEMINI API</h1>
+    <input type="text" id="userInput" placeholder="Say something...">
+    <button onclick="sendMessage()" id="sendBtn" class="button-33">Send</button>
+    <p id="response">Response will appear here...</p>
+    
     </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.1/socket.io.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.1/socket.io.js"></script> -->
     <script src="js/script.js"></script>
+    <!-- <script src="/socket.io/socket.io.js"></script> -->
+
   </body>
 </html>
+
+

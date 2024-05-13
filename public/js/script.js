@@ -1,23 +1,24 @@
-const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-const recognition = new SpeechRecognition();
 
-recognition.lang = 'en-US';
-recognition.interimResults = false;
-recognition.maxAlternatives = 1;
+function sendMessage() {
+  const userInput = document.getElementById('userInput').value;
+  const responseContainer = document.getElementById('response');
 
-document.querySelector('button').addEventListener('click', () => {
-    recognition.start();
+  responseContainer.innerText = `Bot: Typing.......`
+  fetch('/chat', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ text: userInput })
+  })
+  .then(response => response.json())
+  .then(data => {
+      //  displayMessage(data.reply?.candidates[0].content.parts[0].text, 'user');
+      responseContainer.innerText = `Bot: ${data.reply?.candidates[0].content.parts[0].text}`;
+  })
+  .catch(error => {
+      console.error('Error:', error);
+      responseContainer.innerText = 'Error: Could not talk to bot';
   });
+}
 
-recognition.addEventListener('speechstart', () => {
-    console.log('Speech has been detected.');
-});
-recognition.addEventListener('result', (e) => {
-    let last = e.results.length - 1;
-    let text = e.results[last][0].transcript;
-  
-    console.log('Confidence: ' + e.results[0][0].confidence , text);
-  
-    // We will use the Socket.IO here later…
-  });
-  
